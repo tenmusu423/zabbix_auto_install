@@ -1,0 +1,16 @@
+#!/bin/expect
+
+set Message "nginx is opensource Web Application"
+
+spawn checkinstall --install=no -pkgversion=1.10.3
+expect ":"
+send "y\n"
+expect ">>"
+send "$Message\n"
+expect ">>"
+send "\r\n"
+send "\r\n"
+expect "変更するものの番号を入力してください。Enterで続行します:"
+send "\r\n"
+expect "dpkg -i nginx_1.10.3-1_armhf.deb"
+exit 0
