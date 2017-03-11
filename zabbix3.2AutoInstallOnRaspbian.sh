@@ -28,12 +28,13 @@ tar zxvf nginx-1.10.3.tar.gz && mv nginx-1.10.3 nginx && rm nginx-1.10.3.tar.gz 
 # コンパイルする。
 ./configure --group=nginx --user=nginx --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --lock-path=/var/run/nginx.lock --http-client-body-temp-path=/var/cache/nginx/client_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx.pid
 make
+cd ${dir} && mv nginx_comp.exp
 
 # dpkg作成する。手入力を省くためexpectでパッケージを作成する。
 expect ${dir}/nginx_comp.exp
 
 # dpkgで/etc/nginxにインストールし、立つ鳥跡を濁さずでゴミを削除する。
-dpkg -i nginx_1.10.3-1_armhf.deb && rm -rf ${dir}/nginx
+dpkg -i ${dir}/nginx_1.10.3-1_armhf.deb && rm -rf ${dir}/nginx
 
 # log格納用のディレクトリを作成します。
 mkdir /var/log/nginx
