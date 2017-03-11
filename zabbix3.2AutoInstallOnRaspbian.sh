@@ -17,8 +17,8 @@ mv nginx /etc/init.d/ && chmod +x /etc/init.d/nginx
 # nginxのコンパイルに必要なパッケージをインストールする。
 apt-get install -y gcc checkinstall libpcre3-dev zlib1g-dev libssl-dev geoip-bin libfontconfig1-dev libgd-dev libgeoip-dev libice-dev libjbig-dev libjpeg-dev libjpeg62-turbo-dev liblzma-dev libpthread-stubs0-dev libsm-dev libtiff5-dev libtiffxx5 libvpx-dev libx11-dev libx11-doc libxau-dev libxcb1-dev libxdmcp-dev libxpm-dev libxslt1-dev libxt-dev x11proto-core-dev x11proto-input-dev x11proto-kb-dev xorg-sgml-doctools xtrans-dev expect tcl-expect
 
-# wgetでnginx1.10.3のソースを/tmp配下に保存する。
-wget https://nginx.org/download/nginx-1.10.3.tar.gz -P /tmp && cd /tmp
+# wgetでnginx1.10.3のソースを保存する。
+wget https://nginx.org/download/nginx-1.10.3.tar.gz
 
 # 展開しディレクトリ名を変更した後、取得したファイルを削除しnginxディレクトリへ移動します。
 tar zxvf nginx-1.10.3.tar.gz && mv nginx-1.10.3 nginx && rm nginx-1.10.3.tar.gz && cd nginx
@@ -28,10 +28,10 @@ tar zxvf nginx-1.10.3.tar.gz && mv nginx-1.10.3 nginx && rm nginx-1.10.3.tar.gz 
 make
 
 # dpkg作成する。手入力を省くためexpectでパッケージを作成する。
-expect nginx_comp.exp
+expect $pwd/nginx_comp.exp
 
 # dpkgで/etc/nginxにインストールし、立つ鳥跡を濁さずでゴミを削除する。
-dpkg -i nginx_1.10.3-1_armhf.deb && rm -rf /tmp/nginx
+dpkg -i nginx_1.10.3-1_armhf.deb
 
 # log格納用のディレクトリを作成します。
 mkdir /var/log/nginx
