@@ -7,9 +7,11 @@
 # パスワードはデフォルトになっている為、必要であれば適宜修正して下さい。
 # php5等古いバージョンのものはアンインストールしますのでご注意ください。
 
-set pwd='pwd'
-# 現在のカレントディレクトリを表示させます。
-pwd
+# パッケージのアップデートとアップグレードを実施します。
+apt-get update -y && apt-get upgrade -y
+
+# 現在のカレントディレクトリを環境変数に格納します。
+dir=$(pwd)
 
 # nginx.serviceを/etc/init.d/配下に保存します。
 mv nginx /etc/init.d/ && chmod +x /etc/init.d/nginx
@@ -28,18 +30,15 @@ tar zxvf nginx-1.10.3.tar.gz && mv nginx-1.10.3 nginx && rm nginx-1.10.3.tar.gz 
 make
 
 # dpkg作成する。手入力を省くためexpectでパッケージを作成する。
-expect .$pwd/nginx_comp.exp
+expect ${dir}/nginx_comp.exp
 
 # dpkgで/etc/nginxにインストールし、立つ鳥跡を濁さずでゴミを削除する。
-dpkg -i nginx_1.10.3-1_armhf.deb
+dpkg -i nginx_1.10.3-1_armhf.deb && rm -rf ${dir}/nginx
 
 # log格納用のディレクトリを作成します。
 mkdir /var/log/nginx
 
 # サービスに登録し起動します。
 systemctl enable nginx.service && systemctl start nginx.service
-
-# パッケージのアップデートとアップグレードを実施します。
-apt-get update -y && apt-get upgrade -y
 
 exit
