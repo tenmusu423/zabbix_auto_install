@@ -1,4 +1,4 @@
-# zabbix auto install
+# zabbix server auto install
 Zabbix auto install on Raspbian.
 
 nginx
