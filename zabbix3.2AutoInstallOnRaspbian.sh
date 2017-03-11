@@ -7,7 +7,7 @@
 # パスワードはデフォルトになっている為、必要であれば適宜修正して下さい。
 # php5等古いバージョンのものはアンインストールしますのでご注意ください。
 
-set var='pwd'
+set pwd='pwd'
 # 現在のカレントディレクトリを表示させます。
 pwd
 
@@ -28,7 +28,7 @@ tar zxvf nginx-1.10.3.tar.gz && mv nginx-1.10.3 nginx && rm nginx-1.10.3.tar.gz 
 make
 
 # dpkg作成する。手入力を省くためexpectでパッケージを作成する。
-expect $pwd/nginx_comp.exp
+expect .$pwd/nginx_comp.exp
 
 # dpkgで/etc/nginxにインストールし、立つ鳥跡を濁さずでゴミを削除する。
 dpkg -i nginx_1.10.3-1_armhf.deb
