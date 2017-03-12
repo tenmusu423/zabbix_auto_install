@@ -41,6 +41,7 @@ dpkg -i nginx_1.10.3-1_armhf.deb && cd && rm -rf ${dir}
 mkdir /var/log/nginx
 
 # サービスに登録し起動します。
-systemctl enable nginx.service && systemctl start nginx.service
+systemctl enable nginx.service
+systemctl start nginx.service
 
 exit
