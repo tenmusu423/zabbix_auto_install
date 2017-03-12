@@ -35,7 +35,7 @@ mv nginx_comp.exp nginx/ && cd nginx
 expect nginx_comp.exp
 
 # dpkgで/etc/nginxにインストールし、立つ鳥跡を濁さずでゴミを削除する。
-dpkg -i nginx_1.10.3-1_armhf.deb && rm -rf ${dir}/nginx
+dpkg -i nginx_1.10.3-1_armhf.deb && cd && rm -rf ${dir}
 
 # log格納用のディレクトリを作成します。
 mkdir /var/log/nginx
