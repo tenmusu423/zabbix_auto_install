@@ -40,8 +40,7 @@ dpkg -i nginx_1.10.3-1_armhf.deb && cd && rm -rf ${dir}
 # log格納用のディレクトリを作成します。
 mkdir /var/log/nginx
 
-# サービスに登録し起動します。
+# サービスに登録しておきます。
 systemctl enable nginx.service
-systemctl start nginx.service
 
 exit
